@@ -1,0 +1,150 @@
+//
+//  LXLivePrefix.pch
+//  LXLiveAll
+//
+//  Created by 李旭 on 16/10/21.
+//  Copyright © 2016年 lixu. All rights reserved.
+//
+
+#ifndef LXLivePrefix_pch
+#define LXLivePrefix_pch
+
+
+/**
+ *
+ *  system file
+ */
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <IJKMediaFramework/IJKMediaFramework.h>
+#import <AFNetworking.h>
+#import <MJExtension.h>
+#import <MJRefresh.h>
+#import <MLTransition.h>
+#import <UIImageView+WebCache.h>
+
+
+/**
+ *
+ *  3rdparty file
+ */
+#import "UIView+Extension.h"
+
+
+
+/**
+ *
+ *  const
+ */
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+#define SCREEN_GAP 12.0
+#define TITLE_HEIGHT 40.0
+
+
+
+/**
+ *
+ *  define
+ */
+#ifdef DEBUG
+#define DLog(...)   NSLog(__VA_ARGS__)
+#else
+#define DLog(...)
+#endif
+
+#define WeakSelf(type)  __weak typeof(type) weak##type = type;
+
+
+/**
+ *
+ *  color
+ */
+#define color(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define colora(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
+//默认的统一背景色
+#define bgColor color(248, 248, 248)
+#define kRedColor color(233,75,75)
+#define kBlackColor0 color(0,0,0)
+#define kBlackColor52 color(52,52,52)
+#define kWhiteColor238 color(238, 238, 238)
+#define kWhiteColor255 color(255, 255, 255)
+
+
+/**
+ *
+ *  URL
+ */
+//自己的服务器推流拉流地址
+#define URL_LIVE @"rtmp://192.168.15.122:1935/rtmplive/room"
+//   rtmp://live.hkstv.hk.lxdns.com:1935/live/stream153
+//教程
+#define URL_JIANSHU_COURSE @"http://www.jianshu.com/p/30595a5bff42"
+//映客
+#define URL_INKE_HOME_LIST @"http://120.55.238.158/api/live/infos?&id=1477053764829586%2C1477054273907899%2C1477054400238760%2C1477053485735491%2C1477052473780277&multiaddr=1"
+#define URL_INKE_IMG @"http://image.scale.inke.com/imageproxy2/dimgm/scaleImage?url=http%%3A%%2F%%2Fimg.meelive.cn%%2F%@&w=640&s=80&h=640&c=0&o=0"
+//喵播
+#define URL_MIAO_HOME_LIST @"http://live.9158.com/Fans/GetHotLive?page=%d"
+//斗鱼
+#define URL_DOUYU_HOME_LIST @"http://capi.douyucdn.cn/api/v1/getHotCate?aid=ios&client_sys=ios&time=%@&auth=9fd94ae57a867116959ac60f0ae5d1fd"
+#define URL_DOUYU_LIVE @"http://hlsa.douyucdn.cn/live/%@rpALxOIgvq/playlist.m3u8?wsSecret=193bd3ce3254086baa30086c56b22176&wsTime=%@"
+/**
+ *
+ *  string
+ */
+
+
+/**
+ *
+ *  enum
+ */
+typedef NS_ENUM(NSUInteger, NetworkStates) {
+    NetworkStatesNone, // 没有网络
+    NetworkStates2G, // 2G
+    NetworkStates3G, // 3G
+    NetworkStates4G, // 4G
+    NetworkStatesWIFI // WIFI
+};
+
+/**
+ *
+ *  code
+ */
+
+#define DEFINE_SINGLETON_FOR_CLASS(classname) \
+\
+static classname *shared##classname = nil; \
+\
++ (classname *)shared##classname \
+{ \
+static dispatch_once_t onceToken; \
+dispatch_once(&onceToken, ^{ \
+shared##classname = [[self alloc] init]; \
+}); \
+return shared##classname; \
+} \
+
+#define VIEW_BORDER_RADIUS(View, Radius, Width, Color)\
+\
+[View.layer setCornerRadius:(Radius)];\
+[View.layer setMasksToBounds:YES];\
+[View.layer setBorderWidth:(Width)];\
+[View.layer setBorderColor:[Color CGColor]]
+
+
+/**
+ *
+ *  custom file
+ */
+#import "LXBaseController.h"
+#import "LXBaseTableViewCell.h"
+#import "LXNetWorkTool.h"
+#import "LXHelpClass.h"
+#import "UIImage+Extension.h"
+#import "LXBaseCollectionCell.h"
+
+
+#endif /* LXLivePrefix_pch */
+
+
+
